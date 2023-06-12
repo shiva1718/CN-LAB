@@ -11,5 +11,6 @@ public class DateTimeClient {
         String timeString = new String(socket.getInputStream().readAllBytes());
         System.out.println("Server time: " + timeString);
         socket.close();
+        //abcddse
     }
 }
