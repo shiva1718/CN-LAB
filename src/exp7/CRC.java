@@ -9,10 +9,10 @@ public class CRC {
         int[] crc = calculateCRC(data, divisor);
 
         System.out.println("Dividend: ");
-        System.out.println(Arrays.toString(data));
+        printArray(data);
 
         System.out.println("\nCRC code: ");
-        System.out.println(Arrays.toString(crc));
+        printArray(crc);
 
     }
 
@@ -33,5 +33,10 @@ public class CRC {
 
         return Arrays.copyOfRange(dividend, dataBits, totalLength);
 
+    }
+
+    static void printArray(int[] array) {
+        for (int value : array)
+            System.out.print(value);
     }
 }
