@@ -1,23 +1,19 @@
 package exp2;
 
-import ports.Ports;
-
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.util.Scanner;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class EchoClient {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            Socket socket = new Socket("localhost", Ports.ECHO.getPort());
+            Socket socket = new Socket("localhost", 1027);
             System.out.println("Enter your message");
             String message = sc.nextLine();
             System.out.println("the echoed message");
             System.out.println(message);
-            OutputStream outputStream = new DataOutputStream(socket.getOutputStream());
+            OutputStream outputStream = socket.getOutputStream();
             outputStream.write(message.getBytes());
             outputStream.close();
             System.out.println();

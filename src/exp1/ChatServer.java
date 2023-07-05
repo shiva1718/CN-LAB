@@ -1,17 +1,12 @@
 package exp1;
 
-import ports.Ports;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.Scanner;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class ChatServer {
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(Ports.CHAT.getPort());
+        ServerSocket serverSocket = new ServerSocket(1025);
         Scanner sc = new Scanner(System.in);
         while (true) {
             Socket accept = serverSocket.accept();
@@ -27,11 +22,12 @@ public class ChatServer {
             String reply = sc.nextLine();
             outputStream.write(reply.getBytes());
             System.out.println();
-            if (message.equalsIgnoreCase("bye") || message.equalsIgnoreCase("quit")) {
+            accept.close();
+            if (message.equalsIgnoreCase("bye") || message.equalsIgnoreCase("quit") ||
+                    reply.equalsIgnoreCase("bye") || reply.equalsIgnoreCase("quit")) {
                 serverSocket.close();
                 break;
             }
-            accept.close();
         }
 
     }
